@@ -16,12 +16,28 @@ function etch(size) {
 
     const boxes = document.querySelectorAll('.sketch');
 
-boxes.forEach(box => {
-    box.addEventListener('mouseover', () => {
-        let randomColor = Math.floor(Math.random()*16777215).toString(16);
-        box.style.background = `#${randomColor}`;
+    boxes.forEach(box => {
+        box.addEventListener('mouseover', () => {
+            let randomColor = Math.floor(Math.random()*16777215).toString(16);
+            box.style.background = `#${randomColor}`;
+
+            // Somewhat working loop to progressively hide other boxes when entering another one
+            // for (let j = 0; j <= boxes.length; j++) {
+            //     if (box.style.opacity < 1) {
+            //         box.style.opacity = 1;
+            //     } else {
+            //         boxes[j].style.opacity = boxes[j].style.opacity - 0.1;
+            //     };
+            // };
+
+            if (box.style.opacity <= 0) {
+                box.style.opacity = 0.1;
+            } else {
+                box.style.opacity = parseFloat(box.style.opacity) + 0.1;
+            };
+
+        });
     });
-});
 };
 
 etch(16);
@@ -38,3 +54,7 @@ button.addEventListener('click', () => {
 
     etch(result);
 });
+
+const num = '1';
+const op = num + 1;
+console.log(op)
